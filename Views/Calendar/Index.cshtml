@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<h2>Calender Events Scheduling with CRUD operations</h2>
+
+<!--Styles for UI calender-->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/fullcalendar.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+<!--Angualar script libraries-->
+<script src="~/Scripts/moment.js"></script>
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.js"></script>
+<script src="~/Scripts/calendar.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/fullcalendar.min.js"></script>
+<script src="~/Scripts/gcal.js"></script>
+
+<!-- Angular JS Script CalendarScript.js -->
+<script src="~/Scripts/CalendarScript.js"></script>
+
+<!--Bootstrap Angular UI Modal popup script library-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.3.2/ui-bootstrap-tpls.min.js"></script>
+
+<div ng-app="myapp" ng-controller="CalenderController">
+
+    <!--Angular template for modal dialog code structure starts here-->
+    <script type="text/ng-template" id="popUpModalPage.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Calendar Events</h3>
+        </div>
+        <div class="modal-body">
+            <div style="color:red">{{Message}}</div>
+            <div class="form-group">
+                <label>Event Title : </label>
+                <input type="text" ng-model="NewEvent.CalendarTitle" autofocus class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Description : </label>
+                <input type="text" ng-model="NewEvent.CalendarDesc" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Time Slot : </label>
+                <span>{{NewEvent.StartDay}} - {{NewEvent.EndDay}}</span>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="ok()">Save</button>
+            <button class="btn btn-danger" type="button" ng-show="NewEvent.CalendarID > 0" ng-click="delete()">Delete</button>
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+
+        </div>
+
+        <!--Angular modal dialog code ends here-->
+    </script>
+    <div class="row">
+        <div class="col-md-12">
+
+            <!--this element displays the UI-caledar-->
+            <div id="calendar" ui-calendar="uiConfig.calendar" ng-model="eventSources" calendar="myCalendar"></div>
+        </div>
+    </div>
+</div>
+
